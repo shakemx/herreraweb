@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+<!--SEO-->
+{% block title %}Home{% endblock title %}
+{% block description %}Home{% endblock description %}
+{% block titleop %}Home{% endblock titleop %}
+{% block description_op %}Home{% endblock description_op %}
+
+<!--Body-->
+{% block main_body_data %}
+    {% include "navbar.html" %}
+    
+    <p>Hola Mundo</p>
+
+    {% include "footer.html" %}
+{% endblock %}
+
+
+<!--JS-->
+{% block js__files %} 
+{% endblock %}

@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  herreradb:
+      container_name: herreradb
+      image: postgres:13.0
+      environment:
+        - POSTGRES_USER=herrera
+        - POSTGRES_PASSWORD=herrerapass
+        - POSTGRES_DB=herreradb
+      expose: 
+        - 5433
+      ports:
+        - 5433:5433
+  herreraweb:
+      container_name: herreraweb
+      build: .
+      command: 'python3 manage.py runserver 0.0.0.0:4000'
+      volumes:
+        - .:/app
+      ports:
+        - '4000:4000'
+      env_file:
+        - '.env'
+      depends_on:
+        - herreradb
