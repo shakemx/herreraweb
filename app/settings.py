@@ -44,10 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'base',
-    'agente',
     'modalidad',
     'seguro',
     'home',
+    'empresa',
+    'agente',
 ]
 
 MIDDLEWARE = [

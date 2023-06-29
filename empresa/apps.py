@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class MakemigrationsConfig(AppConfig):
+class EmpresaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'makemigrations'
+    name = 'empresa'
