@@ -5,7 +5,7 @@ from empresa.models import Empresa
 
 class SeguroAdmin(admin.ModelAdmin):
     list_display=('empresa', 'nombre', 'is_active')
-    list_filter=('is_active', 'nombre')
+    list_filter=('is_active', 'empresa')
     search_fields=('nombre',)
     ordering=('nombre',)
 
@@ -27,9 +27,37 @@ class SeguroAdmin(admin.ModelAdmin):
 
 class ProductoAdmin(admin.ModelAdmin):
     list_display=('seguro', 'producto', 'is_active')
+    list_filter=('is_active', 'seguro')
+    search_fields=('producto',)
+    ordering=('seguro', 'producto')
+
+    actions=['activate', 'deactivate']
+
+    def activate(self, request, queryset):
+        queryset.update(is_active=True)
+    activate.short_description='Activar Seguro'
+
+    def deactivate(self, request, queryset):
+        queryset.update(is_active=False)
+    deactivate.short_description='Desactivar Seguro'
+
 
 class TipoSeguroAdmin(admin.ModelAdmin):
     list_display=('producto', 'tipo', 'is_active')
+    list_filter=('is_active', 'tipo', 'producto',)
+    search_fields=('tipo',)
+    ordering=('tipo',)
+
+    actions=['activate', 'deactivate']
+
+    def activate(self, request, queryset):
+        queryset.update(is_active=True)
+    activate.short_description='Activar Seguro'
+
+    def deactivate(self, request, queryset):
+        queryset.update(is_active=False)
+    deactivate.short_description='Desactivar Seguro'
+
 
 
 
