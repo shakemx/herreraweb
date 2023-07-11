@@ -12,12 +12,14 @@
 {% block main_body_data %}
     {% include "navbar.html" %}
     
-    <p>Hola Mundo</p>
 
     {% include "footer.html" %}
 {% endblock %}
 
 
 <!--JS-->
-{% block js__files %} 
+{% block child_js_above_files %} 
+{% endblock %}
+
+{% block child_js_below_files %} 
 {% endblock %}

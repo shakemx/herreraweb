@@ -1,1 +1,84 @@
-<p>Esto es un navbar</p>
+{% load static %}
+
+<!-- BANNER -->
+
+<div class="container-fluid bg-secundario color-primario"> 
+    <div class="container">
+        <div class="row d-none d-md-block d-md-inline-block justify-content-between banner">
+            <div class="col-12 col-md-6 text-center text-md-start">
+                <p class="p-0 m-0">¡Contáctanos ahora mismo!</p>
+            </div>
+            <div class="col-6 col-md-3 text-md-start text-center">
+                <a href="https://wa.me/5215527288260?text=Hola%20requiero+información+de+seguros" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-whatsapp fa-sm" style="color: #fffffe"></i> 
+                    <p class="p-0 m-0 d-inline color-primario">55 2728 8268</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-3 text-md-start text-center">
+                <a href="tel:5527288260" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-phone fa-sm" style="color: #fffffe"></i>
+                    <p class="p-0 m-0 d-inline color-primario">55 2728 8268</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-light text-end bg-primario ">
+    <div class="container">
+        <a 
+        class="navbar-toggler" 
+        type="button" 
+        data-bs-toggle="offcanvas" 
+        data-bs-target="#offcanvasLeft" 
+        aria-controls="offcanvasLeft" 
+        aria-expanded="false"
+        aria-label="Mostrar Menú Navegación">
+            <span class="navbar-toggler-icon"></span>
+        </a>    
+        <div class="offcanvas offcanvas-start bg-fondo b-sidebar" tabindex="-1" id="offcanvasLeft" data-bs-scroll="true">
+            <div class="offcanvas-body">
+                <ul class="navbar-nav me-auto text-start">
+                    <li class="nav-item pt-3"><a class="nav-link" href="#">Inicio</a></li>
+                    <li class="nav-item pt-3"><a class="nav-link" href="#">Nosotros</a></li>
+                    <li class="nav-item pt-3"><a class="nav-link" href="#">Alianzas</a></li>
+                    <li class="nav-item pt-3"><a class="nav-link" href="#">Favoritos</a></li>
+                    <li class="nav-item pt-3"><a class="nav-link" href="#">Preguntas Frecuentes</a></li>
+                    <li class="nav-item pt-3"><a class="nav-link" href="#">Testimonios</a></li>
+                    <li class="nav-item pt-3"><a class="nav-link" href="#">Agentes</a></li>
+                    <li class="nav-item pt-3 dropdown">
+                        <a class="nav-link dropdown-toggle" class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Portafolio
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for seguro in seguros %}
+                            <li><a class="dropdown-item" class="nav-link" href="#">{{ seguro.seguro.producto.seguro.nombre }}</a></li>
+                            {% endfor %}                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="offcanvas offcanvas-start bg-secundario color" tabindex="-1" id="offcanvasSeguros" data-bs-scroll="true">
+            <div class="offcanvas-header text-light">
+                <h4>Conoce Nuestro Portafolio</h4>
+            </div>
+            <div class="offcanvas-body text-light text-start">
+                {% for seguro in seguros %}
+                <h5 class="mt3">{{ seguro.seguro.producto.seguro.nombre }}</h5>
+                <p class="mt-2"><small>{{ seguro.nombre }} / {{ seguro.seguro.producto }} </p>
+                {% endfor %}   
+            </div>
+        </div>
+        <span class="navbar-brand">
+            <a href="#offcanvasSeguros" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasSeguros" aria-expanded="false"><span class="color-secundario">Portafolio<i class="fa-solid fa-caret-down fa-sm espacio" style="color: #3da9fc;"></i></span></a>
+            <a href="#" >            
+                <img src="{% static 'img/isotipo.png' %}" alt="Herrera García | Consultores Patrimoniales" class="d-inline-block alighn-top navLogo"/>
+            </a>
+        </span>
+    </div>
+
+    
+</nav>

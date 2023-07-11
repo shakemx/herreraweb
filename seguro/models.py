@@ -24,7 +24,7 @@ class Producto(BaseModel):
         verbose_name_plural = 'Productos'
 
     def __str__(self):
-        return self.seguro.nombre + ' - ' + self.producto
+        return self.producto
     
 class TipoSeguro(BaseModel):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
