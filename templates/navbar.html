@@ -1,5 +1,6 @@
 {% load static %}
 
+<section id="navbar">
 <!-- BANNER -->
 
 <div class="container-fluid bg-secundario color-primario"> 
@@ -74,11 +75,13 @@
         </div>
         <span class="navbar-brand">
             <a href="#offcanvasSeguros" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasSeguros" aria-expanded="false"><span class="color-secundario">Portafolio<i class="fa-solid fa-caret-down fa-sm espacio" style="color: #3da9fc;"></i></span></a>
-            <a href="#" >            
-                <img src="{% static 'img/isotipo.png' %}" alt="Herrera García | Consultores Patrimoniales" class="d-inline-block alighn-top navLogo"/>
+            <a href="#" >
+                {% for seguro in seguros %}            
+                <img src="{{ seguro.seguro.producto.seguro.empresa.logo }}" alt="{{seguro.seguro.producto.seguro.empresa.nombre}}| Consultores Patrimoniales" class="d-inline-block alighn-top navLogo"/>
+                {% endfor %}
             </a>
         </span>
     </div>
-
-    
 </nav>
+         
+</section>  

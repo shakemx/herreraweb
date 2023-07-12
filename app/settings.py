@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_user_agents',
     'debug_toolbar',
+    'storages',
     'base',
     'modalidad',
     'seguro',
@@ -50,6 +52,10 @@ INSTALLED_APPS = [
     'empresa',
     'agente',
 ]
+
+
+USER_AGENTS_CACHE = 'default'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,7 +65,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware'
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware'
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -148,18 +155,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 if DEBUG:
-    STATIC_URL = 'https://%s/%s/' %(environ['AWS_BUCKET_URL_DEV'], environ['AWS_FOLDER'])
-    DEFAULT_FILE_STORAGE = 'aws_storages.PublicMediaStorage'
-    STATICFILES_STORAGE = 'aws_storages.StaticStorage'
-
-    AWS_STORAGE_BUCKET_NAME = environ['AWS_BUCKET_NAME_DEV']
-    AWS_FOLDER = environ['AWS_FOLDER']
-    AWS_ACCESS_KEY_ID = environ['AWS_S3_ACCESS_KEY_ID_DEV']
-    AWS_SECRET_ACCESS_KEY = environ['AWS_S3_SECRET_KEY_DEV']
+    STATIC_URL = '/static/'
     STATICFILES_DIRS = [
         BASE_DIR /'staticfiles'
     ]
-
+    MEDIA_ROOT= BASE_DIR / 'media'
 else:
     STATIC_URL = 'https://%s/%s/' %(environ['AWS_BUCKET_URL'], environ['AWS_FOLDER'])
     STATICFILES_STORAGE = 'aws_storages.StaticStorage'
@@ -177,3 +177,5 @@ else:
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+INTERNAL_IPS = type(str('c'), (), {'__contains__': lambda *a: True})()
